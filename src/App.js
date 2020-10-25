@@ -2,8 +2,16 @@ import React from 'react';
 import './App.css';
 
 
+class Header extends React.Component {
+  render() {
+    return (
+      <h1 className="header">Todo App</h1>
+    );
+  }
+}
+
+
 function Todo({ todo, index, completeTodo, removeTodo }) {
-  {/* Todo is a component that displays the items */}
   return (
     <div
       className="todo"
@@ -11,8 +19,8 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
     >
       {todo.text}
       <div>
-        <button onClick={() => completeTodo(index)}>Complete</button>
-        <button onClick={() => removeTodo(index)}>x</button>
+        <button onClick={() => completeTodo(index)}>Completed</button>
+        <button onClick={() => removeTodo(index)}>Delete</button>
       </div>
     </div>
   );
@@ -34,6 +42,7 @@ function AddTodo({ addTodo }) {
       <input
         type="text"
         className="input"
+        placeholder="Add item and press enter"
         value={value}
         onChange={e => setValue(e.target.value)}
         />
@@ -70,16 +79,17 @@ function App() {
 
   return (
     <div className="app">
+      <Header />
+
       <div className="todo-list">
 
-        {/* every item in the map() is mapped to an index */}
         {todos.map((todo, index) => (
           <Todo
-          key={index}
-          index={index}
-          todo={todo}
-          completeTodo={completeTodo}
-          removeTodo={removeTodo}
+            key={index}
+            index={index}
+            todo={todo}
+            completeTodo={completeTodo}
+            removeTodo={removeTodo}
           />
         ))}
 
